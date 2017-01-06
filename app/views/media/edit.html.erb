@@ -1,6 +1,5 @@
-<h1>Editing medium</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @medium %> |
-<%= link_to 'Back', media_path %>
+<%- model_class = Media -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Media %></h1>
+</div>
+<%= render :partial => 'form' %>

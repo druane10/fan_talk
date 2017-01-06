@@ -1,25 +1,16 @@
-<%= form_for(@medium) do |f| %>
-  <% if @medium.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
-
-      <ul>
-      <% @medium.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @media, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :source, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :source, :class => 'text-field form-control' %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :source %><br>
-    <%= f.text_field :source %>
-  </div>
-  <div class="field">
-    <%= f.label :content_id %><br>
-    <%= f.text_field :content_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  media_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

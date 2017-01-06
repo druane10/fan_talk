@@ -1,27 +1,36 @@
-<h1>Listing media</h1>
-
-<table>
+<%- model_class = Media -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Media %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Source</th>
-      <th>Content</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:source) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @media.each do |medium| %>
+    <% @media.each do |media| %>
       <tr>
-        <td><%= medium.source %></td>
-        <td><%= medium.content %></td>
-        <td><%= link_to 'Show', medium %></td>
-        <td><%= link_to 'Edit', edit_medium_path(medium) %></td>
-        <td><%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= media.id %></td>
+        <td><%= media.source %></td>
+        <td><%=l media.created_at, format: :long %></td>
+        <td>
+          <%= link_to media_path(media), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to media_path(media), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Medium', new_medium_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_media_path,
+            :class => 'btn btn-primary' %>
