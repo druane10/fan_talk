@@ -5,4 +5,5 @@ class Article < ActiveRecord::Base
   validates_formatting_of :main_color, using: :hex_color
   validates_formatting_of :background_color, using: :hex_color
   validates_formatting_of :title_image, using: :url
+  validates_formatting_of :link, using: :url
 end
